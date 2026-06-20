@@ -51,6 +51,53 @@ export async function setResultAction(
   return { ok: true };
 }
 
+/** Save pool settings: buy-in, currency, points-per-correct, payout split, reveal. */
+export async function savePoolConfigAction(
+  _prev: { ok?: boolean; error?: string } | undefined,
+  formData: FormData,
+): Promise<{ ok?: boolean; error?: string }> {
+  if (!(await requireAdmin())) return { error: "unauthorized" };
+
+  const buyIn = Number(formData.get("buy_in"));
+  const currency = String(formData.get("currency") ?? "USD").trim().toUpperCase();
+  const ppc = Number(formData.get("points_per_correct"));
+  const pct1 = Number(formData.get("pct1"));
+  const pct2 = Number(formData.get("pct2"));
+  const pct3 = Number(formData.get("pct3"));
+  const hidden = formData.get("picks_hidden") === "on";
+
+  if (!Number.isFinite(buyIn) || buyIn < 0) return { error: "badNumber" };
+  if (!/^[A-Z]{3}$/.test(currency)) return { error: "badCurrency" };
+  if (!Number.isInteger(ppc) || ppc < 0) return { error: "badNumber" };
+  if ([pct1, pct2, pct3].some((p) => !Number.isFinite(p) || p < 0))
+    return { error: "badNumber" };
+
+  // Keep only places with a positive share, preserving 1st/2nd/3rd order.
+  const payout = [
+    { place: 1, pct: pct1 },
+    { place: 2, pct: pct2 },
+    { place: 3, pct: pct3 },
+  ].filter((p) => p.pct > 0);
+
+  const db = getServiceClient();
+  const { error } = await db
+    .from("pool_config")
+    .update({
+      buy_in: buyIn,
+      currency,
+      points_per_correct: ppc,
+      payout_structure: payout,
+      picks_hidden_until_kickoff: hidden,
+    })
+    .eq("id", true);
+  if (error) return { error: "saveFailed" };
+
+  revalidatePath("/pot");
+  revalidatePath("/admin/pot");
+  revalidatePath("/leaderboard");
+  return { ok: true };
+}
+
 /** Toggle whether a member has paid the buy-in. */
 export async function setPaidAction(
   memberId: string,

@@ -15,6 +15,7 @@ export default async function AdminPage() {
   const cards = [
     { href: "/admin/results", title: t("results"), hint: t("resultsHint") },
     { href: "/admin/members", title: t("members"), hint: t("membersHint") },
+    { href: "/admin/pot", title: t("potSettings"), hint: t("potSettingsHint") },
   ];
 
   return (

@@ -86,6 +86,17 @@
     "potSettings": "Configurar pozo",
     "clear": "Borrar",
     "verifyTimes": "Verifica las horas de inicio: se generaron a partir de las franjas oficiales y puede que necesiten ajuste.",
-    "saved": "Guardado"
+    "saved": "Guardado",
+    "potSettingsHint": "Define la cuota, la moneda, los puntos por acierto y el reparto de premios.",
+    "buyIn": "Cuota de entrada",
+    "currency": "Moneda (ISO, ej. USD)",
+    "pointsPerCorrect": "Puntos por acierto",
+    "payoutSplit": "Reparto de premios (%)",
+    "first": "1º",
+    "second": "2º",
+    "third": "3º",
+    "hidePicks": "Ocultar pronósticos hasta el inicio",
+    "errorBadNumber": "Número inválido.",
+    "errorBadCurrency": "Usa un código de 3 letras (ej. USD)."
   }
 }

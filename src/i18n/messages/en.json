@@ -86,6 +86,17 @@
     "potSettings": "Pot settings",
     "clear": "Clear",
     "verifyTimes": "Verify kickoff times: they were generated from the official daily slots and may need adjusting.",
-    "saved": "Saved"
+    "saved": "Saved",
+    "potSettingsHint": "Set the buy-in, currency, points per correct pick, and the payout split.",
+    "buyIn": "Buy-in",
+    "currency": "Currency (ISO, e.g. USD)",
+    "pointsPerCorrect": "Points per correct",
+    "payoutSplit": "Payout split (%)",
+    "first": "1st",
+    "second": "2nd",
+    "third": "3rd",
+    "hidePicks": "Hide picks until kickoff",
+    "errorBadNumber": "Invalid number.",
+    "errorBadCurrency": "Use a 3-letter code (e.g. USD)."
   }
 }
