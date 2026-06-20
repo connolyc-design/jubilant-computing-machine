@@ -20,7 +20,9 @@ export async function GET() {
     // A real service_role key is a long JWT (~200+ chars). A short value here
     // means it was truncated or the wrong value was pasted.
     SERVICE_ROLE_KEY_length: key.length,
-    SERVICE_ROLE_looks_like_jwt: key.startsWith("eyJ"),
+    SERVICE_ROLE_looks_like_jwt: key.trim().startsWith("eyJ"),
+    // First 11 chars only (key "type"), never the secret itself.
+    SERVICE_ROLE_KEY_prefix: key.slice(0, 11),
     SESSION_SECRET_present: Boolean(process.env.SESSION_SECRET),
     POOL_PASSWORD_present: Boolean(process.env.POOL_PASSWORD),
     ADMIN_PIN_present: Boolean(process.env.ADMIN_PIN),
