@@ -103,3 +103,39 @@ export async function syncResults(): Promise<SyncSummary> {
   summary.updated = updates.length;
   return summary;
 }
+
+/**
+ * Throttled "sync on view": run a results sync only if the last one was more
+ * than `thresholdMs` ago. Called from the pages members open, so results stay
+ * fresh with no cron plan or external pinger required. A small optimistic claim
+ * (move the timestamp first, and only proceed if we won the race) stops
+ * concurrent page loads from all hitting the feed at once. Never throws — a
+ * feed hiccup must not break a page render.
+ */
+export async function maybeSync(thresholdMs = 10 * 60 * 1000): Promise<void> {
+  try {
+    const db = getServiceClient();
+    const { data } = await db
+      .from("pool_config")
+      .select("last_synced_at")
+      .eq("id", true)
+      .single();
+
+    const last = data?.last_synced_at ? new Date(data.last_synced_at).getTime() : 0;
+    if (Date.now() - last < thresholdMs) return; // recently synced
+
+    // Claim the slot: only one caller will successfully move the timestamp.
+    const cutoff = new Date(Date.now() - thresholdMs).toISOString();
+    const { data: claimed } = await db
+      .from("pool_config")
+      .update({ last_synced_at: new Date().toISOString() })
+      .eq("id", true)
+      .or(`last_synced_at.is.null,last_synced_at.lt.${cutoff}`)
+      .select("id");
+    if (!claimed || claimed.length === 0) return; // another request won the race
+
+    await syncResults();
+  } catch {
+    // swallow — sync is best-effort and must never break the page
+  }
+}

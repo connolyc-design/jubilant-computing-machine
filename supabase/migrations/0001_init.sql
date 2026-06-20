@@ -30,6 +30,8 @@ create table if not exists pool_config (
                        '[{"place":1,"pct":70},{"place":2,"pct":20},{"place":3,"pct":10}]'::jsonb,
   -- Hide other members' picks until a match locks at kickoff (owner's choice).
   picks_hidden_until_kickoff boolean not null default true,
+  -- Last time results were auto-synced; used to throttle sync-on-view.
+  last_synced_at     timestamptz,
   created_at         timestamptz    not null default now(),
   updated_at         timestamptz    not null default now()
 );

@@ -2,10 +2,14 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { getSession } from "@/lib/auth";
 import { getStandings } from "@/lib/data";
+import { maybeSync } from "@/lib/sync";
 
 export default async function LeaderboardPage() {
   const session = await getSession();
   if (!session) redirect("/login");
+
+  // Refresh results on view (throttled) so the table is current.
+  await maybeSync();
 
   const t = await getTranslations("leaderboard");
   const standings = await getStandings();

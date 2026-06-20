@@ -86,23 +86,22 @@ Settings, and ship. Shareable by link — no app store.
 
 ## Automatic results
 
-Results update **on their own** — Angelo doesn't have to enter them. A scheduled
-job (`/api/sync`, Vercel Cron every 2 hours — see `vercel.json`) pulls finished
-group-stage scores from the openfootball 2026 feed, derives the GANADOR
-(`1`/`2`/`0`), and writes it to the DB. It only sets a result once a match's
-**kickoff has passed**, so no future result can leak before lock.
+Results update **on their own** — Angelo doesn't have to enter them, and there's
+**nothing to set up**. The app pulls finished group-stage scores from the
+openfootball 2026 feed, derives the GANADOR (`1`/`2`/`0`), and writes it to the
+DB. It only sets a result once a match's **kickoff has passed**, so no future
+result can leak before lock.
 
-- Protect the endpoint with `CRON_SECRET` (Vercel Cron sends it automatically).
-- Admins can also force a refresh with **Sync now** on the admin panel, or:
-  ```bash
-  curl -H "Authorization: Bearer $CRON_SECRET" https://YOUR-APP/api/sync
-  ```
-- Manual entry/override at `/admin/results` still works for anything the feed
-  hasn't covered.
+Three ways it stays current (you don't have to choose — they layer):
 
-> Vercel Hobby plans run crons about once per day; for the 2-hourly cadence use a
-> Pro plan, an external uptime pinger hitting `/api/sync`, or the **Sync now**
-> button.
+1. **Sync on view (default, zero config).** Opening the app or the leaderboard
+   triggers a throttled sync (at most once every ~10 min, with a race guard), so
+   whoever looks first refreshes it for everyone. Works on any hosting plan.
+2. **Cron (optional).** `/api/sync` runs on a Vercel Cron every 2 h
+   (`vercel.json`); protect it with `CRON_SECRET`. Handy so the table is fresh
+   even if nobody has the app open.
+3. **Manual.** A **Sync now** button on the admin panel, and manual
+   entry/override at `/admin/results`.
 
 ## Money layer
 

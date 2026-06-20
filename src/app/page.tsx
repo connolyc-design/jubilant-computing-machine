@@ -2,10 +2,14 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { getSession } from "@/lib/auth";
 import MatchList from "@/components/MatchList";
+import { maybeSync } from "@/lib/sync";
 
 export default async function HomePage() {
   const session = await getSession();
   if (!session) redirect("/login");
+
+  // Keep results fresh whenever the app is opened (throttled, best-effort).
+  await maybeSync();
 
   const t = await getTranslations("home");
 
