@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+
+# Netlify's official Next.js runtime — handles the App Router, server actions,
+# and the /api/sync route (SSR on Netlify Functions). Auto-detected, but pinned
+# here so the build is deterministic.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
