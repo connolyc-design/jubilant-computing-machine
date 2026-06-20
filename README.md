@@ -42,6 +42,12 @@ npm test        # run the scoring tests
 > UTC offsets) and are stored in UTC / rendered in Lima time. Every fixture is
 > still **admin-editable** in case of any official change.
 
+## Deploy from a phone/iPad (no computer)
+
+See **[DEPLOY.md](DEPLOY.md)** — a browser-only, ~10-minute guide using the
+Supabase and Vercel web UIs. The data seed is provided as paste-in SQL
+(`supabase/seed/seed.sql`) so no terminal is needed.
+
 ## Local setup
 
 1. **Install deps**
