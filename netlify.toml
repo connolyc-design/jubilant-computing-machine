@@ -1,5 +1,8 @@
 [build]
   command = "npm run build"
+  # Next.js build output. Must differ from the site base dir or the Next.js
+  # plugin errors with "publish directory cannot be the same as the base directory".
+  publish = ".next"
 
 # Netlify's official Next.js runtime — handles the App Router, server actions,
 # and the /api/sync route (SSR on Netlify Functions). Auto-detected, but pinned
