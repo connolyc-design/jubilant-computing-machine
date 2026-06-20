@@ -3,10 +3,10 @@
  * and ensures the pool_config row.
  * Run with:  npm run seed   (requires SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY)
  *
- * Fixtures come from supabase/seed/fixtures.json — the real 2026 matchups/dates
- * (from the family sheet, which matches the official draw) with clean team
- * names and kickoff times generated from the official daily slots (Lima time).
- * The admin can fine-tune any kickoff time in the app.
+ * Fixtures come from supabase/seed/fixtures.json — the real 2026 group stage
+ * (teams, groups, dates, and kickoff times) sourced from the openfootball
+ * dataset with exact per-venue UTC offsets; team names normalised to our
+ * canonical set. The admin can still fine-tune any fixture in the app.
  */
 import { createClient } from "@supabase/supabase-js";
 import members from "../supabase/seed/members.json" assert { type: "json" };

@@ -36,10 +36,10 @@ npm test        # run the scoring tests
 - [x] **Phase 5** — pot total + payout calculator from standings (`/pot`)
 - [ ] Phase 6 — final ES/EN polish pass, mobile polish, pot-config admin UI
 
-> **Note on kickoff times:** matchups + dates come from the real 2026 draw; the
-> exact kickoff times were generated from the official daily slots (Lima = ET−1h)
-> and are **admin-editable** — worth a quick verification pass before the group
-> relies on lock-at-kickoff.
+> **Kickoff times:** matchups, dates, groups, and kickoff times come from the
+> real 2026 schedule (sourced from the openfootball dataset, with exact per-venue
+> UTC offsets) and are stored in UTC / rendered in Lima time. Every fixture is
+> still **admin-editable** in case of any official change.
 
 ## Local setup
 
