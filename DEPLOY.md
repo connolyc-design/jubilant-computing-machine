@@ -7,18 +7,50 @@ Two free accounts: **Supabase** (database) and **Vercel** (the app).
 
 ## 1. Create the database (Supabase)
 
-1. Go to **supabase.com** → sign in with GitHub → **New project**.
-   - Pick a name and a database password (save it somewhere) → **Create**.
-   - Wait ~1 minute for it to finish setting up.
-2. Open **SQL Editor** (left sidebar) → **New query**.
-3. In a new browser tab open the repo file
-   **`supabase/migrations/0001_init.sql`** on GitHub, tap **Raw**, select all,
-   copy. Paste it into the SQL editor → **Run**. (Creates the tables.)
-4. New query again. Open **`supabase/seed/seed.sql`** → **Raw** → copy → paste →
-   **Run**. (Loads the 13 members, Angelo as admin, and all 72 fixtures.)
-5. Open **Project Settings → API**. Keep this tab — you'll copy two values next:
-   - **Project URL**
-   - **service_role** key (under "Project API keys" — the secret one)
+### 1a. Sign in
+1. In Safari, go to **supabase.com**.
+2. Tap **Start your project** (or **Sign In**, top right).
+3. Tap **Continue with GitHub**. If GitHub asks, tap **Authorize supabase**.
+   (If you don't have a GitHub account yet, create one first at github.com — it's
+   free — then come back.)
+
+### 1b. Create an organization (first time only)
+4. If it asks for an **organization**: type any name (e.g. "Quiniela"),
+   set **Type = Personal** and **Plan = Free**, then tap **Create organization**.
+
+### 1c. Create the project
+5. Tap **New project**.
+6. Fill in:
+   - **Name:** `la-quiniela` (anything is fine).
+   - **Database Password:** tap **Generate a password**, then **Copy it and save
+     it** in your Notes (you won't need it for this app, but Supabase wants one).
+   - **Region:** pick the closest — **South America (São Paulo)** for Lima.
+   - **Plan:** **Free**.
+7. Tap **Create new project**. Wait ~1–2 minutes while it says "Setting up
+   project…". When the dashboard appears, it's ready.
+
+### 1d. Run the setup SQL (creates tables + loads all data in one go)
+8. In the left sidebar tap **SQL Editor** (the icon that looks like `>_`).
+9. Tap **+ New query** (top left of that panel).
+10. Open the setup file in a **new Safari tab**:
+    `github.com/connolyc-design/jubilant-computing-machine/blob/claude/la-quiniela-world-cup-pool-tzsdu8/supabase/setup.sql`
+    → tap the **Raw** button (top right of the file) → tap and hold the text →
+    **Select All** → **Copy**.
+11. Go back to the Supabase tab, tap inside the empty query box, **Paste**.
+12. Tap **Run** (bottom-right green button).
+13. You should see **"Success. No rows returned"** — that's correct. The tables,
+    the 13 members (+ Angelo as admin), and all 72 fixtures are now loaded.
+
+> Want to double-check? Left sidebar → **Table Editor** → open **members**
+> (should show 14 rows) and **matches** (should show 72 rows).
+
+### 1e. Copy the two API values you'll need for Vercel
+14. Left sidebar → **Project Settings** (gear icon at the bottom) → **API**.
+15. Leave this tab open. You'll copy two things in Step 2:
+    - **Project URL** (under "Project URL").
+    - **service_role** key (under "Project API keys" → tap **Reveal** next to
+      `service_role`, then copy). This one is secret — only goes into Vercel,
+      never share it publicly.
 
 ---
 
