@@ -34,7 +34,8 @@ npm test        # run the scoring tests
 - [x] **Phase 3** — 72 real group-stage fixtures (Lima time) + `1/0/2` prediction UI, lock-at-kickoff, picks hidden until kickoff
 - [x] **Phase 4** — admin results entry (`/admin/results`) + auto-scoring + live leaderboard (PUNTAJE/PUESTO)
 - [x] **Phase 5** — pot total + payout calculator from standings (`/pot`)
-- [ ] Phase 6 — final ES/EN polish pass, mobile polish, pot-config admin UI
+- [x] **Phase 6** — pot-config admin UI, ES/EN parity, About credit
+- [x] **Auto-results** — scheduled sync writes finished-match GANADORs (no manual entry)
 
 > **Kickoff times:** matchups, dates, groups, and kickoff times come from the
 > real 2026 schedule (sourced from the openfootball dataset, with exact per-venue
@@ -82,6 +83,26 @@ npm test        # run the scoring tests
 
 Deploy to **Vercel**: import the repo, add the same env vars in Project
 Settings, and ship. Shareable by link — no app store.
+
+## Automatic results
+
+Results update **on their own** — Angelo doesn't have to enter them. A scheduled
+job (`/api/sync`, Vercel Cron every 2 hours — see `vercel.json`) pulls finished
+group-stage scores from the openfootball 2026 feed, derives the GANADOR
+(`1`/`2`/`0`), and writes it to the DB. It only sets a result once a match's
+**kickoff has passed**, so no future result can leak before lock.
+
+- Protect the endpoint with `CRON_SECRET` (Vercel Cron sends it automatically).
+- Admins can also force a refresh with **Sync now** on the admin panel, or:
+  ```bash
+  curl -H "Authorization: Bearer $CRON_SECRET" https://YOUR-APP/api/sync
+  ```
+- Manual entry/override at `/admin/results` still works for anything the feed
+  hasn't covered.
+
+> Vercel Hobby plans run crons about once per day; for the 2-hourly cadence use a
+> Pro plan, an external uptime pinger hitting `/api/sync`, or the **Sync now**
+> button.
 
 ## Money layer
 

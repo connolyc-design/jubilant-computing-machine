@@ -97,6 +97,11 @@
     "third": "3rd",
     "hidePicks": "Hide picks until kickoff",
     "errorBadNumber": "Invalid number.",
-    "errorBadCurrency": "Use a 3-letter code (e.g. USD)."
+    "errorBadCurrency": "Use a 3-letter code (e.g. USD).",
+    "autoResults": "Automatic results",
+    "autoResultsHint": "Results update on their own as each match finishes. You can also sync manually.",
+    "syncNow": "Sync now",
+    "syncDone": "{updated} updated of {finished} played",
+    "syncFailed": "Sync failed."
   }
 }

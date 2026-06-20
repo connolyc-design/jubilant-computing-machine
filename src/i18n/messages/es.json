@@ -97,6 +97,11 @@
     "third": "3º",
     "hidePicks": "Ocultar pronósticos hasta el inicio",
     "errorBadNumber": "Número inválido.",
-    "errorBadCurrency": "Usa un código de 3 letras (ej. USD)."
+    "errorBadCurrency": "Usa un código de 3 letras (ej. USD).",
+    "autoResults": "Resultados automáticos",
+    "autoResultsHint": "Los resultados se actualizan solos al terminar cada partido. También puedes sincronizar manualmente.",
+    "syncNow": "Sincronizar ahora",
+    "syncDone": "{updated} actualizados de {finished} jugados",
+    "syncFailed": "No se pudo sincronizar."
   }
 }

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { getSession, hasAdminUnlock } from "@/lib/auth";
 import PinForm from "./PinForm";
+import SyncButton from "./SyncButton";
 
 export default async function AdminPage() {
   const session = await getSession();
@@ -19,8 +20,9 @@ export default async function AdminPage() {
   ];
 
   return (
-    <div>
-      <h1 className="mb-4 text-2xl font-extrabold text-pitch">{t("title")}</h1>
+    <div className="space-y-4">
+      <h1 className="text-2xl font-extrabold text-pitch">{t("title")}</h1>
+      <SyncButton />
       <div className="grid gap-3 sm:grid-cols-2">
         {cards.map((c) => (
           <Link

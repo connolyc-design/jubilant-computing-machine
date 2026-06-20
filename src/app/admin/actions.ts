@@ -9,6 +9,7 @@ import {
 } from "@/lib/auth";
 import { getServiceClient } from "@/lib/supabase/server";
 import { isValidCode, type Code } from "@/lib/scoring";
+import { syncResults } from "@/lib/sync";
 
 /** Guard: must be logged in AND have entered the admin PIN in this browser. */
 async function requireAdmin(): Promise<boolean> {
@@ -96,6 +97,25 @@ export async function savePoolConfigAction(
   revalidatePath("/admin/pot");
   revalidatePath("/leaderboard");
   return { ok: true };
+}
+
+/** Manually trigger the automatic results sync (results normally update via cron). */
+export async function syncNowAction(): Promise<{
+  ok: boolean;
+  updated?: number;
+  finished?: number;
+  error?: string;
+}> {
+  if (!(await requireAdmin())) return { ok: false, error: "unauthorized" };
+  try {
+    const s = await syncResults();
+    revalidatePath("/");
+    revalidatePath("/leaderboard");
+    revalidatePath("/admin/results");
+    return { ok: true, updated: s.updated, finished: s.finished };
+  } catch (e) {
+    return { ok: false, error: e instanceof Error ? e.message : "syncFailed" };
+  }
 }
 
 /** Toggle whether a member has paid the buy-in. */
