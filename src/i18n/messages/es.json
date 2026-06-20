@@ -1,0 +1,75 @@
+{
+  "app": {
+    "name": "La Quiniela",
+    "tagline": "Mundial 2026",
+    "credit": "Hecho por Angelo Chávez y Connoly Chávez"
+  },
+  "nav": {
+    "matches": "Partidos",
+    "leaderboard": "Tabla",
+    "pot": "Pozo",
+    "about": "Acerca de",
+    "admin": "Admin",
+    "logout": "Salir",
+    "language": "Idioma"
+  },
+  "login": {
+    "title": "Entrar a la quiniela",
+    "subtitle": "Elige tu nombre e ingresa la contraseña del grupo.",
+    "selectName": "Tu nombre",
+    "selectNamePlaceholder": "Elige tu nombre…",
+    "password": "Contraseña del grupo",
+    "submit": "Entrar",
+    "errorBadPassword": "Contraseña incorrecta.",
+    "errorNoName": "Elige tu nombre.",
+    "adminHint": "El administrador (Angelo) usa un PIN aparte para cargar resultados."
+  },
+  "home": {
+    "welcome": "¡Bienvenido a La Quiniela!",
+    "next": "Próximos partidos",
+    "yourRank": "Tu puesto",
+    "totalPot": "Pozo total"
+  },
+  "match": {
+    "equipo1Wins": "Gana {team}",
+    "draw": "Empate",
+    "equipo2Wins": "Gana {team}",
+    "kickoff": "Inicio",
+    "locked": "Cerrado",
+    "open": "Abierto",
+    "yourPick": "Tu pronóstico",
+    "result": "Resultado",
+    "saved": "Guardado",
+    "limaTime": "hora de Lima"
+  },
+  "leaderboard": {
+    "title": "Tabla de posiciones",
+    "place": "Puesto",
+    "player": "Jugador",
+    "points": "Puntos",
+    "correct": "Aciertos"
+  },
+  "pot": {
+    "title": "El pozo",
+    "buyIn": "Cuota de entrada",
+    "paid": "Pagó",
+    "unpaid": "Debe",
+    "total": "Pozo total",
+    "payouts": "Premios",
+    "place": "Puesto",
+    "share": "Premio",
+    "disclaimer": "Solo informativo. La app no procesa pagos; el cobro es por fuera (Yape / Plin / efectivo)."
+  },
+  "about": {
+    "title": "Acerca de",
+    "body": "La Quiniela es nuestra porra del Mundial 2026: cada quien pronostica los partidos, los aciertos suman puntos y la tabla manda. Nació de una hoja de Excel del abuelo.",
+    "credit": "Hecho por Angelo Chávez y Connoly Chávez"
+  },
+  "common": {
+    "loading": "Cargando…",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "yes": "Sí",
+    "no": "No"
+  }
+}

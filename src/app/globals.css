@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-neutral-50 text-neutral-900 antialiased;
+}
+
+/* Big, thumb-friendly tap targets for the 1 / 0 / 2 picks. */
+.pick-btn {
+  @apply flex-1 rounded-xl border-2 border-neutral-200 bg-white px-3 py-4 text-base font-semibold
+         transition active:scale-[0.98];
+}
+.pick-btn[data-selected="true"] {
+  @apply border-pitch bg-pitch text-white;
+}
+.pick-btn:disabled {
+  @apply opacity-60;
+}

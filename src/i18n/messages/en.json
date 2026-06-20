@@ -1,0 +1,75 @@
+{
+  "app": {
+    "name": "La Quiniela",
+    "tagline": "World Cup 2026",
+    "credit": "Made by Angelo Chavez and Connoly Chavez"
+  },
+  "nav": {
+    "matches": "Matches",
+    "leaderboard": "Leaderboard",
+    "pot": "Pot",
+    "about": "About",
+    "admin": "Admin",
+    "logout": "Log out",
+    "language": "Language"
+  },
+  "login": {
+    "title": "Enter the pool",
+    "subtitle": "Pick your name and enter the group password.",
+    "selectName": "Your name",
+    "selectNamePlaceholder": "Choose your name…",
+    "password": "Group password",
+    "submit": "Enter",
+    "errorBadPassword": "Wrong password.",
+    "errorNoName": "Choose your name.",
+    "adminHint": "The admin (Angelo) uses a separate PIN to enter results."
+  },
+  "home": {
+    "welcome": "Welcome to La Quiniela!",
+    "next": "Upcoming matches",
+    "yourRank": "Your place",
+    "totalPot": "Total pot"
+  },
+  "match": {
+    "equipo1Wins": "{team} win",
+    "draw": "Draw",
+    "equipo2Wins": "{team} win",
+    "kickoff": "Kickoff",
+    "locked": "Locked",
+    "open": "Open",
+    "yourPick": "Your pick",
+    "result": "Result",
+    "saved": "Saved",
+    "limaTime": "Lima time"
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "place": "Place",
+    "player": "Player",
+    "points": "Points",
+    "correct": "Correct"
+  },
+  "pot": {
+    "title": "The pot",
+    "buyIn": "Buy-in",
+    "paid": "Paid",
+    "unpaid": "Owes",
+    "total": "Total pot",
+    "payouts": "Payouts",
+    "place": "Place",
+    "share": "Payout",
+    "disclaimer": "Informational only. The app does not process payments; settle off-app (Yape / Plin / cash)."
+  },
+  "about": {
+    "title": "About",
+    "body": "La Quiniela is our World Cup 2026 pool: everyone predicts the matches, correct picks earn points, and the leaderboard rules. It grew out of grandfather's Excel sheet.",
+    "credit": "Made by Angelo Chavez and Connoly Chavez"
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

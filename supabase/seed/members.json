@@ -1,0 +1,16 @@
+[
+  { "name": "PP Florez", "is_admin": false },
+  { "name": "Jimmy", "is_admin": false },
+  { "name": "Tito", "is_admin": false },
+  { "name": "Roma", "is_admin": false },
+  { "name": "Paco", "is_admin": false },
+  { "name": "Dr. Flores", "is_admin": false },
+  { "name": "Yoyo", "email": "luisyoyocuadra@gmail.com", "is_admin": false },
+  { "name": "Roger", "is_admin": false },
+  { "name": "Miguel", "is_admin": false },
+  { "name": "Efrain", "is_admin": false },
+  { "name": "Fernando", "is_admin": false },
+  { "name": "Castro Luis", "is_admin": false },
+  { "name": "Luchito Ramires", "is_admin": false },
+  { "name": "Angelo Chavez", "is_admin": true }
+]
