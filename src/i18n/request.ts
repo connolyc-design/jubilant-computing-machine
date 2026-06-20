@@ -1,12 +1,17 @@
 import { getRequestConfig } from "next-intl/server";
 import { getUserLocale } from "./locale";
+import en from "./messages/en.json";
+import es from "./messages/es.json";
 
-// next-intl reads the per-request locale from our cookie and loads the matching
-// message table. No locale prefix in the URL — the toggle just flips the cookie.
+// Static imports (not a dynamic `import(\`./messages/${locale}\`)`) so the JSON
+// is always bundled into the serverless function — Netlify's tracer does not
+// reliably include dynamically-pathed imports, which 500s every page.
+const MESSAGES = { en, es } as const;
+
 export default getRequestConfig(async () => {
   const locale = await getUserLocale();
   return {
     locale,
-    messages: (await import(`./messages/${locale}.json`)).default,
+    messages: MESSAGES[locale],
   };
 });
