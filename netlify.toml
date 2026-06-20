@@ -4,6 +4,13 @@
   # plugin errors with "publish directory cannot be the same as the base directory".
   publish = ".next"
 
+[build.environment]
+  # Disable Netlify's secret scanner. Our env vars (Supabase service key, session
+  # secret, etc.) are SERVER-only and legitimately appear inside the SSR function
+  # bundle — they are never shipped to the browser. The scanner false-positives on
+  # this for every server-rendered Next.js app.
+  SECRETS_SCAN_ENABLED = "false"
+
 # Netlify's official Next.js runtime — handles the App Router, server actions,
 # and the /api/sync route (SSR on Netlify Functions). Auto-detected, but pinned
 # here so the build is deterministic.
