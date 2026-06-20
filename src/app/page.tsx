@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { getSession } from "@/lib/auth";
+import MatchList from "@/components/MatchList";
 
 export default async function HomePage() {
   const session = await getSession();
@@ -10,17 +11,12 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl bg-pitch px-5 py-6 text-white">
-        <h1 className="text-xl font-extrabold">{t("welcome")}</h1>
-        <p className="mt-1 text-sm text-white/90">
-          {session.name}
-        </p>
+      <div className="rounded-2xl bg-pitch px-5 py-5 text-white">
+        <h1 className="text-lg font-extrabold">{t("welcome")}</h1>
+        <p className="mt-0.5 text-sm text-white/90">{session.name}</p>
       </div>
 
-      {/* Phase 3 will render the upcoming-matches list with the 1 / 0 / 2 picks here. */}
-      <section className="rounded-2xl border border-dashed border-neutral-300 px-5 py-10 text-center text-sm text-neutral-500">
-        {t("next")} — <span className="italic">próximamente / coming soon</span>
-      </section>
+      <MatchList memberId={session.memberId} />
     </div>
   );
 }

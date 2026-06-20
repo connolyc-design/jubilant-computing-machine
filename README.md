@@ -30,11 +30,16 @@ npm test        # run the scoring tests
 ## Build status (phased — see the build prompt)
 
 - [x] **Phase 1** — scaffold, schema, scoring engine + tests, ES/EN i18n shell with toggle, Lima-time helper, pick-name/password auth
-- [ ] Phase 2 — members + admin roles UI, paid tracking
-- [ ] Phase 3 — fixtures (72 group games, Lima time) + `1/0/2` prediction UI, lock-at-kickoff
-- [ ] Phase 4 — results entry + auto-scoring + live leaderboard (PUNTAJE/PUESTO)
-- [ ] Phase 5 — pot, total, payout calculator
-- [ ] Phase 6 — full ES/EN + mobile polish + About credit
+- [x] **Phase 2** — members + admin roles, paid tracking (`/admin/members`)
+- [x] **Phase 3** — 72 real group-stage fixtures (Lima time) + `1/0/2` prediction UI, lock-at-kickoff, picks hidden until kickoff
+- [x] **Phase 4** — admin results entry (`/admin/results`) + auto-scoring + live leaderboard (PUNTAJE/PUESTO)
+- [x] **Phase 5** — pot total + payout calculator from standings (`/pot`)
+- [ ] Phase 6 — final ES/EN polish pass, mobile polish, pot-config admin UI
+
+> **Note on kickoff times:** matchups + dates come from the real 2026 draw; the
+> exact kickoff times were generated from the official daily slots (Lima = ET−1h)
+> and are **admin-editable** — worth a quick verification pass before the group
+> relies on lock-at-kickoff.
 
 ## Local setup
 

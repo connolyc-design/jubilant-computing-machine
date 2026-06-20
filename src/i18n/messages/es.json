@@ -71,5 +71,21 @@
     "cancel": "Cancelar",
     "yes": "Sí",
     "no": "No"
+  },
+  "admin": {
+    "title": "Panel de administración",
+    "pinTitle": "Acceso de administrador",
+    "pinSubtitle": "Ingresa el PIN para cargar resultados y administrar el grupo.",
+    "pin": "PIN",
+    "unlock": "Entrar",
+    "errorBadPin": "PIN incorrecto.",
+    "results": "Cargar resultados",
+    "resultsHint": "Marca al GANADOR de cada partido (1 / X / 2). La tabla se actualiza sola.",
+    "members": "Miembros y pagos",
+    "membersHint": "Marca quién ya pagó la cuota de entrada.",
+    "potSettings": "Configurar pozo",
+    "clear": "Borrar",
+    "verifyTimes": "Verifica las horas de inicio: se generaron a partir de las franjas oficiales y puede que necesiten ajuste.",
+    "saved": "Guardado"
   }
 }

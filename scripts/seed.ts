@@ -1,12 +1,16 @@
 /**
- * Seeds the database with the fixed roster and ensures the pool_config row.
+ * Seeds the database with the fixed roster, the 72 real group-stage fixtures,
+ * and ensures the pool_config row.
  * Run with:  npm run seed   (requires SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY)
  *
- * Fixtures (the 72 group-stage matches) are seeded in a later step once the
- * schema is confirmed — see scripts/seed-fixtures.ts (added in Phase 3).
+ * Fixtures come from supabase/seed/fixtures.json — the real 2026 matchups/dates
+ * (from the family sheet, which matches the official draw) with clean team
+ * names and kickoff times generated from the official daily slots (Lima time).
+ * The admin can fine-tune any kickoff time in the app.
  */
 import { createClient } from "@supabase/supabase-js";
 import members from "../supabase/seed/members.json" assert { type: "json" };
+import fixtures from "../supabase/seed/fixtures.json" assert { type: "json" };
 
 const url = process.env.SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -24,6 +28,14 @@ async function main() {
     .upsert(members, { onConflict: "name" });
   if (mErr) throw mErr;
   console.log(`Seeded ${members.length} members.`);
+
+  // Seed fixtures. We clear the group stage first so re-running stays idempotent
+  // without leaving stale/duplicate matches (predictions cascade-delete).
+  const { error: delErr } = await db.from("matches").delete().eq("stage", "group");
+  if (delErr) throw delErr;
+  const { error: fErr } = await db.from("matches").insert(fixtures);
+  if (fErr) throw fErr;
+  console.log(`Seeded ${fixtures.length} group-stage fixtures.`);
 
   // Ensure the singleton config row exists (currency defaults to USD here).
   const { error: cErr } = await db

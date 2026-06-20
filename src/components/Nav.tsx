@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import LanguageToggle from "./LanguageToggle";
 import { getSession } from "@/lib/auth";
+import { logoutAction } from "@/app/actions/auth";
 
 /** Top navigation bar — present on every screen, with the language toggle. */
 export default async function Nav() {
@@ -29,12 +30,24 @@ export default async function Nav() {
               <Link href="/pot" className="hover:text-pitch">
                 {t("pot")}
               </Link>
+              {session.isAdmin && (
+                <Link href="/admin" className="hover:text-pitch">
+                  {t("admin")}
+                </Link>
+              )}
             </>
           )}
-          <Link href="/about" className="hover:text-pitch">
+          <Link href="/about" className="hidden hover:text-pitch sm:inline">
             {t("about")}
           </Link>
           <LanguageToggle />
+          {session && (
+            <form action={logoutAction}>
+              <button type="submit" className="text-neutral-400 hover:text-pitch">
+                {t("logout")}
+              </button>
+            </form>
+          )}
         </nav>
       </div>
     </header>
